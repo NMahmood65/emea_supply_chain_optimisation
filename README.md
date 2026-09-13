@@ -1,6 +1,6 @@
 # Optimizing EMEA Logistics: Reducing Transit Delays and Carrier Overbilling
 
-🔗 **[View the Interactive Tableau Dashboard Here](INSERT_YOUR_TABLEAU_PUBLIC_LINK_HERE)**
+🔗 **[View the Interactive Tableau Dashboard Here](INSERT_YOUR_TABLEAU_PUBLIC_LINK_HERE)**https://public.tableau.com/app/profile/naser.mahmood/viz/EMEA_Supply_Chain_Optimization/EMEA_Supply_Chain_Optimization?publish=yes
 
 ## 📌 Executive Summary
 In this project, I acted as a Supply Chain Data Analyst for an EMEA retail network. The goal was to audit third-party logistics (3PL) performance, identify root causes for transit delays, and flag carrier overbilling. 
