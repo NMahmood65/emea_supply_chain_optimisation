@@ -100,6 +100,7 @@ FROM deduplicated_raw
 WHERE row_num = 1;
 
 ```
+</details>
 
 ## 📈 Exploratory Data Analysis & Business Insights
 
