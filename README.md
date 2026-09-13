@@ -25,7 +25,7 @@ The EMEA logistics network relies heavily on cross-functional carrier coordinati
 
 To ensure scalability, the flat file was modeled into a Star Schema with a central Fact table (`Fact_Shipments`) and supporting Dimension tables for locations and carriers. 
 
-*(Note to User: Insert a screenshot of your Excel ERD here)*
+![Star Schema ERD](ERD_Diagram.png)
 
 ### Data Dictionary
 | Column Name | Data Type | Description |
