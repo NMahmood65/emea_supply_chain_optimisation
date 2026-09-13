@@ -99,6 +99,8 @@ SELECT
 FROM deduplicated_raw
 WHERE row_num = 1;
 
+```
+
 ## 📈 Exploratory Data Analysis & Business Insights
 
 ### 1. Carrier SLA Failures
