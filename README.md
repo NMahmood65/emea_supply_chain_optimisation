@@ -98,3 +98,23 @@ SELECT
     ROUND((ABS(Invoice_Billed_EUR) - ABS(Freight_Spend_EUR)), 2) AS Invoice_Discrepancy
 FROM deduplicated_raw
 WHERE row_num = 1;
+
+## 📈 Exploratory Data Analysis & Business Insights
+
+### 1. Carrier SLA Failures
+* **Insight:** DPD Local and DHL Express are severely underperforming, with nearly 40% of their shipments arriving late. Conversely, XPO Logistics and FedEx maintain near-perfect SLA compliance.
+* **Recommendation:** Reroute standard parcel volume away from DPD Local to FedEx Crossborder, and initiate a vendor performance review with DHL account managers.
+
+### 2. Invoice Discrepancies (Overbilling)
+* **Insight:** Maersk Inland and XPO Logistics are responsible for the highest amounts of invoice discrepancies, heavily inflating operational freight spend.
+* **Recommendation:** Implement an automated freight audit and payment (FAP) system rule to flag any Maersk or XPO invoice with a variance greater than 3% for manual review before payout.
+
+### 3. Route Bottlenecks
+* **Insight:** The route from `DC_London_UK` to `Store_Berlin` is the least efficient node in the EMEA network, averaging over 2.5 days of delay per shipment.
+* **Recommendation:** Investigate customs clearance procedures post-Brexit for the UK-to-Germany lane, and consider fulfilling Berlin store inventory directly from the Frankfurt DC instead of London.
+
+---
+
+## 🚧 Limitations & Next Steps
+* **Data Limitations:** This analysis assumes static SLA targets based on raw distance. In reality, transit targets vary by seasonal volume, truck capacity, and specific vendor contracts.
+* **Next Steps:** If given access to warehouse operating hours, I would perform a cohort analysis to see if specific days of the week (e.g., Friday dispatches) are driving the delays on the London-to-Berlin lane.
