@@ -102,6 +102,23 @@ WHERE row_num = 1;
 ```
 </details>
 
+### 🔎 Data Validation (Python Sanity Checks)
+After engineering the synthetic dataset, I ran `df.describe()` to validate the statistical distribution of the continuous variables before exporting. This step ensured the data met physical logistics constraints (e.g., clipping the minimum weight so no negative values were generated) and accurately reflected the targeted 150 kg LTL (Less-than-Truckload) mean.
+
+| Statistic | Weight_kg | Distance_km |
+| :--- | :--- | :--- |
+| **count** | 48500.00 | 50000.00 |
+| **mean** | 150.15 | 1229.73 |
+| **std** | 30.07 | 702.27 |
+| **min** | 22.50 | 15.01 |
+| **25%** | 129.97 | 621.10 |
+| **50%** | 150.23 | 1229.80 |
+| **75%** | 170.42 | 1837.11 |
+| **max** | 264.89 | 2449.93 |
+
+*> Note: The `Weight_kg` count is intentionally lower than 50,000 due to the deliberate injection of missing values to simulate real-world sensor failures, which were later resolved using SQL mean imputation.*
+
+
 ## 📈 Exploratory Data Analysis & Business Insights
 
 ### 1. Carrier SLA Failures
