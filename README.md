@@ -56,7 +56,7 @@ I wrote a comprehensive SQL script to normalize this data for Tableau. Key trans
 
 
 <details>
-<summary><strong>💻 Click here to view the Data Cleaning SQL Script</strong></summary>
+<summary><strong>🚨 💻 CLICK HERE TO VIEW THE DATA CLEANING SQL SCRIPT 🚨</strong></summary>
  
 ```sql
 CREATE TABLE clean_shipments AS
