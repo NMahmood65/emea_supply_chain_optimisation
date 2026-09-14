@@ -116,7 +116,7 @@ After engineering the synthetic dataset, I ran `df.describe()` to validate the s
 | **75%** | 170.42 | 1837.11 |
 | **max** | 264.89 | 2449.93 |
 
-*> Note: The `Weight_kg` count is intentionally lower than 50,000 due to the deliberate injection of missing values to simulate real-world sensor failures, which were later resolved using SQL mean imputation.*
+> *Note: The `Weight_kg` count is intentionally lower than 50,000 due to the deliberate injection of missing values to simulate real-world sensor failures, which were later resolved using SQL mean imputation.*
 
 
 ## 📈 Exploratory Data Analysis & Business Insights
