@@ -55,7 +55,7 @@ I wrote a comprehensive SQL script to normalize this data for Tableau. Key trans
 * **Standardization:** Cleaned categorical typos using `TRIM()` and `CASE` statements to ensure accurate vendor grouping.
 
 <details>
-<summary>Click here to view the Data Cleaning SQL Script</summary>
+<summary><strong>💻 Click here to view the Data Cleaning SQL Script</strong></summary>
  
 ```sql
 CREATE TABLE clean_shipments AS
