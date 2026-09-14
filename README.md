@@ -54,6 +54,7 @@ I wrote a comprehensive SQL script to normalize this data for Tableau. Key trans
 * **Imputation:** Used `COALESCE` and `NULLIF` to handle missing cargo weights by imputing a baseline average.
 * **Standardization:** Cleaned categorical typos using `TRIM()` and `CASE` statements to ensure accurate vendor grouping.
 
+
 <details>
 <summary><strong>💻 Click here to view the Data Cleaning SQL Script</strong></summary>
  
@@ -101,6 +102,7 @@ WHERE row_num = 1;
 
 ```
 </details>
+
 
 ### 🔎 Data Validation (Python Sanity Checks)
 After engineering the synthetic dataset, I ran `df.describe()` to validate the statistical distribution of the continuous variables before exporting. This step ensured the data met physical logistics constraints (e.g., clipping the minimum weight so no negative values were generated) and accurately reflected the targeted 150 kg LTL (Less-than-Truckload) mean.
