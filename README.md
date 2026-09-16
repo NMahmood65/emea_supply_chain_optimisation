@@ -140,3 +140,24 @@ After engineering the synthetic dataset, I ran `df.describe()` to validate the s
 ## 🚧 Limitations & Next Steps
 * **Data Limitations:** This analysis assumes static SLA targets based on raw distance. In reality, transit targets vary by seasonal volume, truck capacity, and specific vendor contracts.
 * **Next Steps:** If given access to warehouse operating hours, I would perform a cohort analysis to see if specific days of the week (e.g., Friday dispatches) are driving the delays on the London-to-Berlin lane.
+
+## Step 2: Monthly Cohort & Carrier Remediation Analysis
+
+Following the initial optimization, we extracted a comprehensive 2023 dataset (clean_shipments_final.csv) containing 50,500 EMEA and cross-border shipments to evaluate vendor performance and financial compliance over time. By cohorting the data by month and carrier, we bypassed surface-level metrics to uncover severe systemic failures in the logistics network.
+
+### 🔍 Key Findings from the Data
+
+1. **Critical SLA Breaches by Tier-1 Carriers:** 
+   Our carrier performance cohort analysis revealed a catastrophic failure in our routing guide. Three primary 3PLs—**FedEx Crossborder, Maersk Inland, and XPO Logistics**—yielded a **0% On-Time Delivery rate** across the entire year. Their actual transit days averaged 6-7 days against an expected SLA of 3.8 days. DPD-Local and DHL Express performed better, but still only achieved an unacceptable ~40% On-Time rate. Overall network OTIF (On-Time In-Full) hovered at a stagnant 16% month-over-month.
+2. **Massive Financial Bleed (Freight Audit Failure):** 
+   By cross-referencing `Freight_Spend_EUR` against `Invoice_Billed_EUR`, the data exposed severe invoice discrepancies. Across 2023, the total financial leakage amounted to **€6.15 Million**. Every major carrier is consistently overbilling by an average of €115 to €128 per shipment. 
+3. **Alarming Claim Rates:** 
+   **42.2%** of all shipments resulted in a claim (amounting to 21,304 individual claims). These failures are split almost evenly across *Lost Freight* (33%), *Shortages* (33%), and *Damaged in Transit* (34%). 
+
+### 🚀 Realistic Conclusions & Final Actionable Results
+
+The lack of month-over-month operational improvement indicates a broken feedback loop between the logistics control tower and our 3PL vendors. Based on this data, the following strategic actions must be executed immediately:
+
+* **Action 1: Carrier Remediation & Volume Shifting:** Place FedEx, Maersk, and XPO on immediate 60-day probation. Temporarily re-route high-priority `B2B_Wholesale` and `Retail_Store` volume to DPD and DHL. If the probationary carriers cannot bring actual transit days within +1 of expected SLAs, initiate offboarding.
+* **Action 2: Deploy Automated Freight Audit & Pay (FAP):** The €6.15M in overbilling is unacceptable. We must halt all manual invoice approvals. Implement an automated EDI compliance gate that immediately flags and rejects any invoice where `Invoice_Billed_EUR` > `Freight_Spend_EUR`.
+* **Action 3: Shift Root-Cause Focus to Origin Warehouses:** Because claim types (Damage/Loss/Shortage) are uniformly distributed across all carriers rather than isolated to one bad vendor, the root cause is likely occurring *before* transit. We must audit our origin facilities (specifically `US_Home_Office_NY` and `Vendor_Rotterdam_NL`) for substandard palletization and packaging protocols.
