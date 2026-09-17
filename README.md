@@ -1,8 +1,3 @@
-## 🚀 Final Deliverable: EMEA Control Tower
-**[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public] (Insert_Your_Tableau_Link_Here)**
-
-*The Control Tower allows supply chain directors to instantly filter KPIs, overbilling trends, and warehouse claims by specific carriers.*
-
 # Optimizing EMEA Logistics: Reducing Transit Delays and Carrier Overbilling
 
 🔗 **[View the Interactive Tableau Dashboard Here](https://public.tableau.com/app/profile/naser.mahmood/viz/EMEA_Supply_Chain_Optimization/EMEA_Supply_Chain_Optimization?publish=yes)**
@@ -172,3 +167,8 @@ The lack of month-over-month operational improvement indicates a broken feedback
 * **Action 1: Carrier Remediation & Volume Shifting:** Place FedEx, Maersk, and XPO on immediate 60-day probation. Temporarily re-route high-priority `B2B_Wholesale` and `Retail_Store` volume to DPD and DHL. If the probationary carriers cannot bring actual transit days within +1 of expected SLAs, initiate offboarding.
 * **Action 2: Deploy Automated Freight Audit & Pay (FAP):** The €6.15M in overbilling is unacceptable. We must halt all manual invoice approvals. Implement an automated EDI compliance gate that immediately flags and rejects any invoice where `Invoice_Billed_EUR` > `Freight_Spend_EUR`.
 * **Action 3: Shift Root-Cause Focus to Origin Warehouses:** Because claim types (Damage/Loss/Shortage) are uniformly distributed across all carriers rather than isolated to one bad vendor, the root cause is likely occurring *before* transit. We must audit our origin facilities (specifically `US_Home_Office_NY` and `Vendor_Rotterdam_NL`) for substandard palletization and packaging protocols.
+
+## 🚀 Final Deliverable: EMEA Control Tower
+**[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public](https://public.tableau.com/app/profile/YOUR-LINK-HERE)**
+
+*The Control Tower allows supply chain directors to instantly filter KPIs, overbilling trends, and warehouse claims by specific carriers.*
