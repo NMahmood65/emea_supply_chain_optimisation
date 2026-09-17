@@ -147,7 +147,9 @@ After engineering the synthetic dataset, I ran `df.describe()` to validate the s
 
 ## Step 2: Monthly Cohort & Carrier Remediation Analysis
 
-Following the initial optimization, we extracted a comprehensive 2023 dataset (clean_shipments_final.csv) containing 50,500 EMEA and cross-border shipments to evaluate vendor performance and financial compliance over time. By cohorting the data by month and carrier, we bypassed surface-level metrics to uncover severe systemic failures in the logistics network.
+Following the initial optimization, we extracted a comprehensive 2023 dataset containing 50,500 EMEA and cross-border shipments. Before feeding this into the final Tableau Control Tower, I performed a strict data validation pass using Python. I removed 500 duplicate EDI scans and dropped ~3,922 incomplete records missing critical categorical fields (such as `Carrier_3PL` and `Weight_kg`). 
+
+This brought the final, highly accurate dataset down to **46,078 pristine rows** (`clean_shipments_final.csv`). By cohorting this cleaned data by month and carrier, we bypassed surface-level metrics to uncover severe systemic failures in the logistics network.
 
 ### 🔍 Key Findings from the Data
 
