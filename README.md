@@ -154,6 +154,12 @@ Following the initial optimization, we extracted a comprehensive 2023 dataset (c
 3. **Alarming Claim Rates:** 
    **42.2%** of all shipments resulted in a claim (amounting to 21,304 individual claims). These failures are split almost evenly across *Lost Freight* (33%), *Shortages* (33%), and *Damaged in Transit* (34%). 
 
+### 🚨 Phase 2: SLA Failures & Financial Leakage Discovered
+During the second phase of analysis (Cohort Analysis & Dashboarding), three major operational failures were uncovered:
+1. **Critical Carrier Failure:** Tier-1 carriers (FedEx Crossborder, Maersk Inland, and XPO Logistics) exhibited a **0.0% on-time delivery rate** across the entire year, while functional carriers (DHL, DPD) hovered around 39%. 
+2. **Financial Leakage (Overbilling):** The failing carriers systematically overbilled for freight spend, resulting in over **€2.71M in invoice discrepancies** hidden within the data.
+3. **Root Cause of Claims:** The origin warehouse breakdown revealed that damages and shortages were not solely carrier issues. They were heavily concentrated at specific distribution centers (e.g., DC_London_UK and Vendor_Rotterdam_NL), indicating a need for operational audits at the warehouse dock.
+
 ### 🚀 Realistic Conclusions & Final Actionable Results
 
 The lack of month-over-month operational improvement indicates a broken feedback loop between the logistics control tower and our 3PL vendors. Based on this data, the following strategic actions must be executed immediately:
