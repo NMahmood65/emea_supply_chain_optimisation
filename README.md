@@ -169,6 +169,6 @@ The lack of month-over-month operational improvement indicates a broken feedback
 * **Action 3: Shift Root-Cause Focus to Origin Warehouses:** Because claim types (Damage/Loss/Shortage) are uniformly distributed across all carriers rather than isolated to one bad vendor, the root cause is likely occurring *before* transit. We must audit our origin facilities (specifically `US_Home_Office_NY` and `Vendor_Rotterdam_NL`) for substandard palletization and packaging protocols.
 
 ## 🚀 Final Deliverable: EMEA Control Tower
-**[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public](https://public.tableau.com/app/profile/YOUR-LINK-HERE)**
+**[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public](https://public.tableau.com/app/profile/naser.mahmood/viz/EMEA_Supply_Chain_Step_2/ExecControlTower?publish=yes)**
 
 *The Control Tower allows supply chain directors to instantly filter KPIs, overbilling trends, and warehouse claims by specific carriers.*
