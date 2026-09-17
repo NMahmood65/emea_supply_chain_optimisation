@@ -1,3 +1,8 @@
+## 🚀 Final Deliverable: EMEA Control Tower
+**[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public] (Insert_Your_Tableau_Link_Here)**
+
+*The Control Tower allows supply chain directors to instantly filter KPIs, overbilling trends, and warehouse claims by specific carriers.*
+
 # Optimizing EMEA Logistics: Reducing Transit Delays and Carrier Overbilling
 
 🔗 **[View the Interactive Tableau Dashboard Here](https://public.tableau.com/app/profile/naser.mahmood/viz/EMEA_Supply_Chain_Optimization/EMEA_Supply_Chain_Optimization?publish=yes)**
@@ -54,7 +59,11 @@ I wrote a comprehensive SQL script to normalize this data for Tableau. Key trans
 * **Imputation:** Used `COALESCE` and `NULLIF` to handle missing cargo weights by imputing a baseline average.
 * **Standardization:** Cleaned categorical typos using `TRIM()` and `CASE` statements to ensure accurate vendor grouping.
 
-
+### 🧹 Phase 2: Advanced Cleaning for Dashboarding
+To ensure strict KPI accuracy for the Tableau Control Tower, I performed a final pass of data cleaning:
+* **Missing Feature Drops:** Dropped rows missing critical categorical fields (`Carrier_3PL` and `Weight_kg`), bringing the final dataset to **46,078 pristine rows**.
+* **The "Null" Claim Trap:** Identified a system quirk where successful deliveries were exported with a `Null` claim status. Replaced these null values with `No_Claim` using Python to prevent Tableau from accidentally filtering out healthy shipments during On-Time rate calculations.
+  
 <details>
 <summary><strong>🚨 💻 CLICK HERE TO VIEW THE DATA CLEANING SQL SCRIPT 🚨</strong></summary>
  
@@ -154,11 +163,7 @@ Following the initial optimization, we extracted a comprehensive 2023 dataset (c
 3. **Alarming Claim Rates:** 
    **42.2%** of all shipments resulted in a claim (amounting to 21,304 individual claims). These failures are split almost evenly across *Lost Freight* (33%), *Shortages* (33%), and *Damaged in Transit* (34%). 
 
-### 🚨 Phase 2: SLA Failures & Financial Leakage Discovered
-During the second phase of analysis (Cohort Analysis & Dashboarding), three major operational failures were uncovered:
-1. **Critical Carrier Failure:** Tier-1 carriers (FedEx Crossborder, Maersk Inland, and XPO Logistics) exhibited a **0.0% on-time delivery rate** across the entire year, while functional carriers (DHL, DPD) hovered around 39%. 
-2. **Financial Leakage (Overbilling):** The failing carriers systematically overbilled for freight spend, resulting in over **€2.71M in invoice discrepancies** hidden within the data.
-3. **Root Cause of Claims:** The origin warehouse breakdown revealed that damages and shortages were not solely carrier issues. They were heavily concentrated at specific distribution centers (e.g., DC_London_UK and Vendor_Rotterdam_NL), indicating a need for operational audits at the warehouse dock.
+
 
 ### 🚀 Realistic Conclusions & Final Actionable Results
 
