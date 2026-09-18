@@ -177,4 +177,4 @@ The lack of month-over-month operational improvement indicates a broken feedback
 
 ### 🔗 Related Projects: Advanced Excel Version
 While this project utilizes SQL and Tableau, I have also built a purely native **Advanced Excel** Control Tower to demonstrate complex formula engineering and spreadsheet-based UI design. You can view the Excel version here:
-👉 [EMEA Supply Chain Control Tower](https://github.com/YourUsername/emea-supply-chain-control-tower)
+👉 [EMEA Supply Chain Control Tower](https://github.com/NMahmood65/emea_supply_chain_excel_dashboard)
