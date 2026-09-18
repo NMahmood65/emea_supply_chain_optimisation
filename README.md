@@ -174,3 +174,7 @@ The lack of month-over-month operational improvement indicates a broken feedback
 **[Click Here to view the interactive EMEA Control Tower Dashboard on Tableau Public](https://public.tableau.com/app/profile/naser.mahmood/viz/EMEA_Supply_Chain_Step_2/ExecControlTower?publish=yes)**
 
 *The Control Tower allows supply chain directors to instantly filter KPIs, overbilling trends, and warehouse claims by specific carriers.*
+
+### 🔗 Related Projects: Advanced Excel Version
+While this project utilizes SQL and Tableau, I have also built a purely native **Advanced Excel** Control Tower to demonstrate complex formula engineering and spreadsheet-based UI design. You can view the Excel version here:
+👉 [EMEA Supply Chain Control Tower](https://github.com/YourUsername/emea-supply-chain-control-tower)
