@@ -63,45 +63,93 @@ To ensure strict KPI accuracy for the Tableau Control Tower, I performed a final
 <summary><strong>🚨 💻 CLICK HERE TO VIEW THE DATA CLEANING SQL SCRIPT 🚨</strong></summary>
  
 ```sql
+-- Create a new cleaned shipments table
 CREATE TABLE clean_shipments AS
+
+-- Step 1: Remove duplicate shipments
 WITH deduplicated_raw AS (
     SELECT 
         *,
-        ROW_NUMBER() OVER(PARTITION BY Shipment_ID ORDER BY Order_Date DESC) as row_num
+        
+        -- Number each row for the same Shipment_ID, with the newest order first
+        ROW_NUMBER() OVER(
+            PARTITION BY Shipment_ID 
+            ORDER BY Order_Date DESC
+        ) AS row_num
+        
     FROM raw_shipments
 )
+
+-- Step 2: Select and clean the required columns
 SELECT 
     Shipment_ID,
+
+    -- Convert different date formats into a standard MySQL date
     CASE 
-        WHEN Order_Date LIKE '20__-__-__' THEN STR_TO_DATE(Order_Date, '%Y-%m-%d')
-        WHEN Order_Date LIKE '%/%/%' THEN STR_TO_DATE(Order_Date, '%d/%m/%Y')
-        WHEN Order_Date LIKE '__-__-20__' THEN STR_TO_DATE(Order_Date, '%m-%d-%Y')
+        WHEN Order_Date LIKE '20__-__-__' 
+            THEN STR_TO_DATE(Order_Date, '%Y-%m-%d')
+        WHEN Order_Date LIKE '%/%/%' 
+            THEN STR_TO_DATE(Order_Date, '%d/%m/%Y')
+        WHEN Order_Date LIKE '__-__-20__' 
+            THEN STR_TO_DATE(Order_Date, '%m-%d-%Y')
         ELSE NULL 
     END AS Order_Date,
+
+    -- Standardise the names of origin locations
     CASE 
-        WHEN Origin_Location = 'London DC' THEN 'DC_London_UK'
-        WHEN Origin_Location = 'Frankfurt_Warehouse' THEN 'DC_Frankfurt_DE'
+        WHEN Origin_Location = 'London DC' 
+            THEN 'DC_London_UK'
+        WHEN Origin_Location = 'Frankfurt_Warehouse' 
+            THEN 'DC_Frankfurt_DE'
         ELSE Origin_Location 
     END AS Origin_Location,
+
     Destination,
     Channel,
+
+    -- Clean and standardise carrier names
     CASE 
-        WHEN TRIM(Carrier_3PL) = 'dhl express' THEN 'DHL_Express'
-        WHEN TRIM(Carrier_3PL) = 'DPD-Local' THEN 'DPD_Local'
-        WHEN Carrier_3PL IS NULL OR Carrier_3PL = '' THEN 'Unknown_Carrier'
+        WHEN TRIM(Carrier_3PL) = 'dhl express' 
+            THEN 'DHL_Express'
+        WHEN TRIM(Carrier_3PL) = 'DPD-Local' 
+            THEN 'DPD_Local'
+        WHEN Carrier_3PL IS NULL OR Carrier_3PL = '' 
+            THEN 'Unknown_Carrier'
         ELSE TRIM(Carrier_3PL)
     END AS Carrier_3PL,
+
+    -- Make sure distance is positive
     ABS(Distance_km) AS Distance_km,
-    ROUND(COALESCE(NULLIF(Weight_kg, ''), 150.00), 2) AS Weight_kg, 
+
+    -- Replace missing weights with 150 kg and round to 2 decimal places
+    ROUND(
+        COALESCE(NULLIF(Weight_kg, ''), 150.00), 
+        2
+    ) AS Weight_kg,
+
     Expected_Transit_Days,
     Actual_Transit_Days,
     Delivery_Status,
+
+    -- Make sure freight spend is positive
     ABS(Freight_Spend_EUR) AS Freight_Spend_EUR,
+
+    -- Make sure invoice amount is positive
     ABS(Invoice_Billed_EUR) AS Invoice_Billed_EUR,
+
     EDI_Compliance_Status,
     Claim_Status,
-    ROUND((ABS(Invoice_Billed_EUR) - ABS(Freight_Spend_EUR)), 2) AS Invoice_Discrepancy
+
+    -- Calculate the difference between the invoice and freight spend
+    ROUND(
+        (ABS(Invoice_Billed_EUR) - ABS(Freight_Spend_EUR)), 
+        2
+    ) AS Invoice_Discrepancy
+
+-- Use the deduplicated data
 FROM deduplicated_raw
+
+-- Keep only the newest record for each Shipment_ID
 WHERE row_num = 1;
 
 ```
